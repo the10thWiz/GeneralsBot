@@ -9,6 +9,9 @@ body{
     left:0px;
     padding:0px;
     margin:0px;
+    position:absolute;
+    overflow:hidden;
+    
 }
 #header {
     width:100%;
