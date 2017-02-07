@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Generals.io Bot</title>
+        <link rel="stylesheet" href="https://rawgit.com/the10thWiz/GeneralsBot/master/bot.css" type="text/css">
+        <script src="https://cdn.rawgit.com/socketio/socket.io-client/master/dist/socket.io.min.js"></script>
+    </head>
+    <body>
+        <div id="header">Generals.io Bot</div>
+        <div id="outputContent">
+            <div id="mainLogging" class="log">
+            </div>
+            <div id="mainBoard">
+                <canvas style="background-color:white; width:100%; height:100%;">This Browser doesn't support the canvas</canvas>
+            </div>
+        </div>
+        <script>
+var log = {
+    loggingDiv:document.getElementById("mainLogging"),
+    logStart:0,
+    add:function() {
+        var a = arguments;
+        for(var i = 0; i < a.length; i++) {
+            this.loggingDiv.innerHTML+="["+(new Date().getMilliseconds()-this.logStart)+"]~"+a[i]+"<br>"
+        }
+    },
+    start:function() {
+        this.logStart = new Date().getMilliseconds();
+    },
+    wait:function() {
+        this.logStart = 0;
+    }
+};
+var io = require('socket.io-client');
+log.add("Reaching out");
+var Socket = io("https://bot.generals.io");
+
+Socket.on("connect", function() {
+    log.add("Connected");
+});
+Socket.on("disconnect", function() {
+    log.add("Disconnected");
+});
+        </script>
+    </body>
+</html>
