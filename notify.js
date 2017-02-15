@@ -17,7 +17,7 @@ var notify = {
             });
             this.cur.addEventListener('click', this.onClick);
             clearTimeout(this.curId);
-            this.curId = window.setTimeout(function() {notify.cur.close();}, 3000);
+            this.curId = window.setTimeout(function() {notify.cur.close();}, 5000);
         }
     },
 };
